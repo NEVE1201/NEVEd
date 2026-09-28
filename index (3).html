@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEVE ONLINE - 네베온라인</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Malgun Gothic', sans-serif;
+        }
+        body {
+            background-color: #08080a;
+            /* 마인크래프트 감성의 어두운 그라데이션 및 그리드 패턴 */
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
+                radial-gradient(circle, #1a1a2e 0%, #050508 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        /* 상단 가오 네비게이션 */
+        header {
+            width: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid #5c2d91; /* 네더랙/옵시디언 퍼플 보더 */
+            box-shadow: 0 4px 20px rgba(92, 45, 145, 0.4);
+        }
+        header a {
+            color: #b19cd9;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 16px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.2s;
+            text-shadow: 1px 1px #000;
+        }
+        header a:hover {
+            color: #ff4757;
+            text-shadow: 0 0 10px #ff4757;
+        }
+        /* 메인 컨테이너 */
+        .container {
+            margin-top: 130px;
+            width: 90%;
+            max-width: 900px;
+            text-align: center;
+            padding-bottom: 50px;
+        }
+        .hero {
+            background: rgba(15, 15, 22, 0.85);
+            border: 3px solid #333;
+            border-top: 3px solid #7158e2;
+            border-bottom: 3px solid #ff4757;
+            border-radius: 6px;
+            padding: 50px 30px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 42px;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px #ff4757, -2px -2px #7158e2;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            font-size: 18px;
+            color: #888;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        .ip-box {
+            background: #0f0f13;
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 4px;
+            border: 2px solid #ff4757;
+            font-size: 22px;
+            color: #ff4757;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 15px 0;
+            box-shadow: inset 0 0 10px rgba(255, 71, 87, 0.2);
+            transition: 0.2s;
+        }
+        .ip-box:hover {
+            background: #ff4757;
+            color: #fff;
+            box-shadow: 0 0 20px #ff4757;
+            transform: scale(1.03);
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            background: #2f3640;
+            color: white;
+            padding: 12px 24px;
+            border: 2px solid #7158e2;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+            box-shadow: 0 4px #1e272e;
+            text-transform: uppercase;
+        }
+        .btn:hover {
+            background: #7158e2;
+            box-shadow: 0 4px #3b318c;
+        }
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 #1e272e;
+        }
+        .btn.disabled {
+            background: #1e1e24;
+            border-color: #444;
+            color: #666;
+            box-shadow: 0 4px #0d0d11;
+            cursor: not-allowed;
+        }
+        /* 섹션 박스 */
+        .section-box {
+            display: none;
+            background: rgba(15, 15, 22, 0.95);
+            border: 2px solid #444;
+            border-radius: 6px;
+            padding: 40px;
+            margin-top: 20px;
+            text-align: left;
+            animation: fadeIn 0.25s ease-in-out;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .section-box.active {
+            display: block;
+        }
+        h3 {
+            color: #ff4757;
+            font-size: 24px;
+            margin-bottom: 20px;
+            border-left: 5px solid #ff4757;
+            padding-left: 10px;
+            text-shadow: 1px 1px #000;
+        }
+        p {
+            line-height: 1.8;
+            margin-bottom: 12px;
+            color: #ccc;
+        }
+        /* 푸터 */
+        footer {
+            margin-top: auto;
+            padding: 25px;
+            background: rgba(5, 5, 8, 0.9);
+            width: 100%;
+            text-align: center;
+            font-size: 13px;
+            border-top: 2px solid #222;
+            color: #777;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 상단 네비게이션 -->
+    <header>
+        <a onclick="showSection('home'); playClickSound();">HOME</a>
+        <a onclick="showSection('intro'); playClickSound();">서버소개</a>
+        <a onclick="showSection('rules'); playClickSound();">법전</a>
+        <a onclick="showSection('donate'); playClickSound();">후원하기</a>
+        <a onclick="alert('디스코드는 준비중이다.'); playClickSound();">디스코드</a>
+    </header>
+
+    <div class="container">
+        <!-- 홈 / 메인 화면 -->
+        <div id="home" class="section-box active hero" style="display:block;">
+            <h1>NEVE 1.20.1</h1>
+            <div class="subtitle">"진짜들의 전쟁, 양산형과는 결이 다른 고퀄리티 인생약탈"</div>
+            <div class="ip-box" onclick="copyIP(); playClickSound();">
+                [ 주소 복사하기 ] <br><span style="font-size: 15px; color:#aaa; font-weight:normal;">neve.labmc.kr</span>
+            </div>
+            <div style="margin-top: 20px;">
+                <a href="#" class="btn" onclick="showSection('rules'); playClickSound();">[법전보러가기]</a>
+            </div>
+        </div>
+
+        <!-- 서버소개 화면 -->
+        <div id="intro" class="section-box">
+            <h3>서버 소개</h3>
+            <p>지금까지 보지 못했던 압도적 스케일의 인생약탈 1.20.1</p>
+            <p style="font-size: 22px; color: #fff; font-weight: bold; margin: 15px 0;">"같이 네베온라인?"</p>
+            <p>서버 주소 : <b style="color: #ff4757;">neve.labmc.kr</b></p>
+            <p>더 이상 허접한 양산형 서버에 시간 낭비하지 마라. 고퀄리티 인생약탈의 정점을 보여준다.</p>
+            <p style="color: #ff4757; font-weight: bold; margin-top: 15px;">⚡ 이번주 토요일 대망의 오픈 예정</p>
+            <div class="btn-group" style="margin-top: 30px;">
+                <a href="#" class="btn disabled">[마인리스트 추천하러가기] [준비중]</a>
+                <a href="#" class="btn disabled">[서버 디스코드가기] [준비중]</a>
+            </div>
+        </div>
+
+        <!-- 법전 화면 -->
+        <div id="rules" class="section-box">
+            <h3>서버 법전</h3>
+            <p style="font-size: 18px; color: #ff4757; text-align: center; padding: 40px; font-weight: bold;">[!] 현재 법전 규정은 뜨겁게 제작중이다.</p>
+        </div>
+
+        <!-- 후원하기 화면 -->
+        <div id="donate" class="section-box">
+            <h3>후원 안내</h3>
+            <p>서버의 지배자가 되고 싶다면 확인해라.</p>
+            <button class="btn" style="margin-top: 15px;" onclick="nextDonateStep(1); playClickSound();">[후원하는 방법 확인]</button>
+            
+            <div id="donate-step" style="margin-top: 25px; border-top: 2px dashed #333; padding-top: 20px; display: none;">
+                <p id="donate-text" style="font-size: 16px; color: #fff;"></p>
+                <button id="donate-next-btn" class="btn" style="margin-top: 15px; display: none;" onclick="nextDonateStep(); playClickSound();"></button>
+            </div>
+
+            <div style="margin-top: 30px; font-size: 13px; background: #08080a; padding: 15px; border: 1px solid #222; border-radius: 4px;">
+                <p>• 후원 최소 금액 : <b>100원</b></p>
+                <p>• 후원 배수 : <b style="color: #7158e2;">2.5배</b> | 누적 배수 : <b style="color: #7158e2;">1.5배</b></p>
+                <p>• 매주 후원 랭킹 : <span style="color: #ff4757;">제작중</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>서버 제작 : <b>PLAY_yeonseo</b> &nbsp;|&nbsp; 어드민 : <b>(제작예정)</b></p>
+        <p style="font-size: 11px; color: #444; margin-top: 6px;">© NEVE ONLINE. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <!-- 효과음 및 인터랙션 스크립트 -->
+    <script>
+        // 마인크래프트 버튼 클릭 감성의 타격감 있는 효과음 (웹 오디오 API 신디사이저)
+        function playClickSound() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'square'; // 좀 더 거친 마크 버튼 느낌의 사각파
+                osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.04);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.04);
+            } catch(e) {}
+        }
+
+        // 섹션 전환
+        function showSection(sectionId) {
+            const boxes = document.querySelectorAll('.section-box');
+            boxes.forEach(box => box.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // IP 복사
+        function copyIP() {
+            navigator.clipboard.writeText('neve.labmc.kr').then(() => {
+                alert('서버 주소가 복사되었다: neve.labmc.kr');
+            });
+        }
+
+        // 후원 스텝 가이드
+        let currentStep = 0;
+        const steps = [
+            { text: "<b>[방법 1] 기본 숙지사항</b><br>후원은 관리진 수동 후원이다.<br>처리가 느리다고 악성 도배를 시전할 경우 관리진 권한으로 즉각 처벌 대상이 될 수 있으니 참고해라.", btn: "[ 다음으로 가기 ]" },
+            { text: "<b>[방법 2] 디스코드 입장</b><br>후원을 진행하려면 서버 공식 디스코드에 먼저 합류해라.", btn: "[ 다음으로 가기 ]" },
+            { text: "<b>[방법 3] 티켓 개설</b><br>인증을 끝마친 뒤 티켓을 열고 본인의 닉네임과 <b style='color:#ff4757;'>'후원' 혹은 '대리후원' 중 무엇을 하러 왔는지</b> 정확히 기재해라.", btn: "[ 다음으로 가기 ]" },
+            { text: "<b>[방법 4] 최종 처리</b><br>내용을 확인한 관리진이 신속하게 처리를 도와줄 것이다.", btn: "[ 마지막 확인 ]" },
+            { text: "🔥 모든 안내를 숙지했다. 디스코드 티켓을 통해 문의해라.", btn: "" }
+        ];
+
+        function nextDonateStep(reset) {
+            if(reset === 1) currentStep = 0;
+            const box = document.getElementById('donate-step');
+            const textEl = document.getElementById('donate-text');
+            const btnEl = document.getElementById('donate-next-btn');
+            
+            box.style.display = 'block';
+            textEl.innerHTML = steps[currentStep].text;
+            
+            if(steps[currentStep].btn !== "") {
+                btnEl.style.display = 'inline-block';
+                btnEl.innerText = steps[currentStep].btn;
+                currentStep++;
+            } else {
+                btnEl.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

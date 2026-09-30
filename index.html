@@ -23,7 +23,6 @@
             position: relative;
         }
 
-        /* 배경 어둡게 */
         body::before {
             content: '';
             position: absolute;
@@ -59,7 +58,7 @@
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             list-style: none;
         }
 
@@ -100,32 +99,15 @@
             z-index: 10;
         }
 
-        .sidebar.active {
-            right: 0;
-        }
-
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar ul li {
-            margin-bottom: 20px;
-        }
-
+        .sidebar.active { right: 0; }
+        .sidebar ul { list-style: none; }
+        .sidebar ul li { margin-bottom: 20px; }
         .sidebar ul li a {
-            color: #ddd;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            transition: 0.3s;
-            display: block;
+            color: #ddd; text-decoration: none; font-size: 16px; font-weight: bold; transition: 0.3s; display: block;
         }
+        .sidebar ul li a:hover { color: #ffd700; }
 
-        .sidebar ul li a:hover {
-            color: #ffd700;
-        }
-
-        /* 메인 화면 영역 */
+        /* 메인 영역 */
         main {
             display: flex;
             flex-direction: column;
@@ -136,147 +118,67 @@
             padding: 20px;
         }
 
-        /* 메인 화면 제목 위치 상향 조정 */
-        #mainSection {
-            margin-top: -60px;
-        }
-
+        #mainSection { margin-top: -60px; }
         .hero-title {
-            font-size: 38px;
-            font-weight: bold;
-            margin-bottom: 35px;
-            color: #ffffff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+            font-size: 38px; font-weight: bold; margin-bottom: 35px; color: #ffffff; text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
         }
 
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
+        .btn-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
         .btn {
-            padding: 12px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.2);
-            cursor: pointer;
+            padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); cursor: pointer;
         }
-
         .btn-tutorial { background: rgba(255, 255, 255, 0.15); color: #fff; }
         .btn-copy { background: #ffd700; color: #1a1c29; }
         .btn-discord { background: #5865F2; color: #fff; }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            opacity: 0.9;
-        }
+        .btn:hover { transform: translateY(-3px); opacity: 0.9; }
 
         /* ⬛ 서버소개 전용 화면 */
         #introSection {
-            display: none;
-            background: #0a0a0d;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 20px;
-            padding: 50px 40px;
-            max-width: 600px;
-            width: 100%;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
-            line-height: 2;
+            display: none; background: #0a0a0d; border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 20px;
+            padding: 50px 40px; max-width: 600px; width: 100%; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9); line-height: 2;
+        }
+        #introSection h2 { font-size: 32px; color: #ffd700; margin-bottom: 20px; }
+        #introSection p { font-size: 18px; color: #eeeeee; }
+
+        /* 🔍 아이템 로그 조사 전용 화면 */
+        #logSection {
+            display: none; background: #0d0f17; border: 1px solid rgba(88, 101, 242, 0.4); border-radius: 20px;
+            padding: 40px 30px; max-width: 650px; width: 100%; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9); text-align: center;
+        }
+        #logSection h2 { font-size: 28px; color: #5865F2; margin-bottom: 10px; }
+        .search-box { display: flex; gap: 10px; margin: 20px 0; }
+        .search-input {
+            flex: 1; padding: 12px 18px; border-radius: 10px; border: 1px solid #333; background: #1a1c29; color: #fff; font-size: 16px; outline: none;
+        }
+        .search-btn {
+            padding: 12px 24px; background: #5865F2; color: #fff; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.2s;
+        }
+        .search-btn:hover { background: #4752C4; }
+
+        .log-display {
+            background: #141622; border-radius: 12px; padding: 20px; min-height: 180px; max-height: 250px; overflow-y: auto; text-align: left;
+            border: 1px solid rgba(255,255,255,0.05); font-size: 15px; line-height: 1.8; color: #bbb;
         }
 
-        #introSection h2 {
-            font-size: 32px;
-            color: #ffd700;
-            margin-bottom: 20px;
-        }
-
-        #introSection p {
-            font-size: 18px;
-            color: #eeeeee;
-        }
-
-        .action-btn-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 25px;
-            flex-wrap: wrap;
-        }
-
+        .action-btn-group { display: flex; gap: 15px; justify-content: center; margin-top: 25px; flex-wrap: wrap; }
         .copy-link-btn {
-            padding: 12px 24px;
-            background: #5865F2;
-            color: #ffffff;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
+            padding: 12px 24px; background: #5865F2; color: #ffffff; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s;
         }
-
-        .copy-link-btn:hover {
-            background: #4752C4;
-            transform: translateY(-2px);
-        }
-
+        .copy-link-btn:hover { background: #4752C4; transform: translateY(-2px); }
         .back-btn {
-            padding: 12px 24px;
-            background: rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.2s;
+            padding: 12px 24px; background: rgba(255, 255, 255, 0.15); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s;
         }
+        .back-btn:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-2px); }
 
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* 기타 모달 팝업 */
+        /* 모달 팝업 */
         .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(5px); justify-content: center; align-items: center; z-index: 100;
         }
-
         .modal-content {
-            background: #111116;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 15px;
-            padding: 35px 30px;
-            max-width: 480px;
-            width: 90%;
-            line-height: 1.9;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            background: #111116; border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 15px; padding: 35px 30px; max-width: 480px; width: 90%; line-height: 1.9; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
-
-        .close-btn {
-            position: absolute;
-            top: 12px; right: 18px;
-            color: #aaa;
-            font-size: 24px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
+        .close-btn { position: absolute; top: 12px; right: 18px; color: #aaa; font-size: 24px; cursor: pointer; transition: 0.2s; }
         .close-btn:hover { color: #fff; }
         .highlight { color: #ffd700; }
         .important { color: #ff6b6b; font-weight: bold; }
@@ -289,7 +191,7 @@
         <div class="logo" onclick="showMainSection()">NEVE ONLINE</div>
         <ul class="nav-links">
             <li><a onclick="showIntroSection()">서버소개</a></li>
-            <li><a onclick="showIntroSection()">서버배경</a></li>
+            <li><a onclick="showLogSection()">아이템로그조사하기</a></li>
             <li><a onclick="showIntroSection()">길라잡이</a></li>
             <li><a onclick="openModal('donateModal')">후원하러가기</a></li>
             <li><a onclick="showIntroSection()">법전</a></li>
@@ -311,7 +213,6 @@
         <!-- 기본 메인 화면 -->
         <div id="mainSection">
             <h1 class="hero-title">[ 네베온라인에 당신을 초대합니다. ]</h1>
-
             <div class="btn-group">
                 <a onclick="showIntroSection()" class="btn btn-tutorial">[튜토리얼보러가기]</a>
                 <a onclick="copyIP()" class="btn btn-copy">[서버주소 복사하러가기]</a>
@@ -329,9 +230,23 @@
             <p style="color: #ffd700; font-weight: bold;">
                 서버 ip : neve.labmc.kr
             </p>
-            
             <div class="action-btn-group">
                 <a class="copy-link-btn" onclick="copyDiscordLink()">[클릭시 디스코드링크복사]</a>
+                <a class="back-btn" onclick="showMainSection()">[돌아가기]</a>
+            </div>
+        </div>
+
+        <!-- 🔍 아이템 로그 조사 화면 -->
+        <div id="logSection">
+            <h2>🔍 아이템 로그 조사</h2>
+            <div class="search-box">
+                <input type="text" id="usernameInput" class="search-input" placeholder="검색할 유저의 닉네임을 입력하세요">
+                <button class="search-btn" onclick="searchItemLog()">검색</button>
+            </div>
+            <div class="log-display" id="logBox">
+                닉네임을 검색해 로그를 확인해주세요.
+            </div>
+            <div class="action-btn-group">
                 <a class="back-btn" onclick="showMainSection()">[돌아가기]</a>
             </div>
         </div>
@@ -361,45 +276,76 @@
     </div>
 
     <script>
-        // 사이드바 토글
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
-        }
+        // 접속 기록이 있는 가상 테스트 유저 데이터 (실제 연동 시 서버 DB에서 조회)
+        const joinedUsers = ["steve", "alex", "blu2b2rry", "rlaehwl", "neve"];
 
-        // 서버소개 화면으로 전환
-        function showIntroSection() {
+        // 예시 아이템 로그 데이터
+        const dummyLogs = {
+            "steve": [
+                "steve님이 다이아몬드 검을(를) 먹었습니다.",
+                "steve님이 황금사과을(를) 버렸습니다."
+            ],
+            "blu2b2rry": [
+                "blu2b2rry님이 네더라이트 갑옷을(를) 먹었습니다.",
+                "blu2b2rry님이 불사조의 토템을(를) 먹었습니다."
+            ]
+        };
+
+        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
+
+        function hideAllSections() {
             document.getElementById('mainSection').style.display = 'none';
-            document.getElementById('introSection').style.display = 'block';
-        }
-
-        // 메인 화면으로 전환
-        function showMainSection() {
             document.getElementById('introSection').style.display = 'none';
-            document.getElementById('mainSection').style.display = 'block';
+            document.getElementById('logSection').style.display = 'none';
         }
 
-        // 모달 팝업 제어
-        function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
-        }
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
+        function showMainSection() { hideAllSections(); document.getElementById('mainSection').style.display = 'block'; }
+        function showIntroSection() { hideAllSections(); document.getElementById('introSection').style.display = 'block'; }
+        function showLogSection() { 
+            hideAllSections(); 
+            document.getElementById('logSection').style.display = 'block'; 
+            document.getElementById('logBox').innerHTML = '닉네임을 검색해 로그를 확인해주세요.';
+            document.getElementById('usernameInput').value = '';
         }
 
-        // IP 복사
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        // 아이템 로그 검색 함수
+        function searchItemLog() {
+            const name = document.getElementById('usernameInput').value.trim();
+            const logBox = document.getElementById('logBox');
+
+            if (!name) {
+                alert("닉네임을 입력해 주세요.");
+                return;
+            }
+
+            // 1번 이상 접속 여부 확인 (대소문자 구분 없이 처리)
+            const isJoined = joinedUsers.some(u => u.toLowerCase() === name.toLowerCase());
+
+            if (!isJoined) {
+                logBox.innerHTML = `<span style="color: #ff6b6b;">⚠️ 해당 유저는 서버에 접속한 기록이 없습니다. (1회 이상 접속 유저만 조회 가능)</span>`;
+                return;
+            }
+
+            // 로그 조회 (데이터가 있는 경우 출력, 없는 경우 기본 문구)
+            const matchedUser = joinedUsers.find(u => u.toLowerCase() === name.toLowerCase());
+            const userLogs = dummyLogs[matchedUser];
+
+            if (userLogs && userLogs.length > 0) {
+                logBox.innerHTML = userLogs.map(log => `• ${log}`).join('<br>');
+            } else {
+                logBox.innerHTML = `<span style="color: #ffd700;">'${matchedUser}'</span> 님의 아이템 로그 기록이 없습니다.`;
+            }
+        }
+
         function copyIP() {
-            const serverIP = "neve.labmc.kr";
-            navigator.clipboard.writeText(serverIP).then(() => {
-                alert("서버 주소가 복사되었습니다: " + serverIP);
-            });
+            navigator.clipboard.writeText("neve.labmc.kr").then(() => alert("서버 주소가 복사되었습니다: neve.labmc.kr"));
         }
 
-        // 디스코드 링크 복사
         function copyDiscordLink() {
-            const discordURL = "https://discord.gg/c3cWQPz4KY";
-            navigator.clipboard.writeText(discordURL).then(() => {
-                alert("디스코드 링크가 복사되었습니다!");
-            });
+            navigator.clipboard.writeText("https://discord.gg/c3cWQPz4KY").then(() => alert("디스코드 링크가 복사되었습니다!"));
         }
     </script>
 </body>

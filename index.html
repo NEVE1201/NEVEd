@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>네베온라인 - NEVE ONLINE</title>
-    <!-- 부드러운 고급 글꼴 (Pretendard) 적용 -->
+    <!-- Pretendard 글꼴 -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <style>
         * {
@@ -15,7 +15,6 @@
         }
 
         body {
-            /* GitHub 저장소 내 bg.jpg 배경 이미지 */
             background: url('bg.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #ffffff;
@@ -24,7 +23,7 @@
             position: relative;
         }
 
-        /* 배경 어둡게 처리 */
+        /* 배경 어둡게 */
         body::before {
             content: '';
             position: absolute;
@@ -55,6 +54,7 @@
             font-weight: bold;
             color: #ffd700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            cursor: pointer;
         }
 
         .nav-links {
@@ -76,7 +76,6 @@
             text-shadow: 0 0 8px #ffd700;
         }
 
-        /* 햄버거 메뉴 버튼 */
         .menu-btn {
             background: none;
             border: none;
@@ -126,7 +125,7 @@
             color: #ffd700;
         }
 
-        /* 메인 영역 */
+        /* 메인 화면 영역 */
         main {
             display: flex;
             flex-direction: column;
@@ -134,13 +133,18 @@
             justify-content: center;
             text-align: center;
             min-height: calc(100vh - 80px);
-            padding: 0 20px;
+            padding: 20px;
+        }
+
+        /* 메인 화면 제목 위치 상향 조정 */
+        #mainSection {
+            margin-top: -60px;
         }
 
         .hero-title {
             font-size: 38px;
             font-weight: bold;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             color: #ffffff;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
         }
@@ -172,7 +176,75 @@
             opacity: 0.9;
         }
 
-        /* 모달 팝업 창 (서버소개 / 후원 / 랭킹) */
+        /* ⬛ 서버소개 전용 화면 */
+        #introSection {
+            display: none;
+            background: #0a0a0d;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 50px 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
+            line-height: 2;
+        }
+
+        #introSection h2 {
+            font-size: 32px;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+
+        #introSection p {
+            font-size: 18px;
+            color: #eeeeee;
+        }
+
+        .action-btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .copy-link-btn {
+            padding: 12px 24px;
+            background: #5865F2;
+            color: #ffffff;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
+        }
+
+        .copy-link-btn:hover {
+            background: #4752C4;
+            transform: translateY(-2px);
+        }
+
+        .back-btn {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* 기타 모달 팝업 */
         .modal {
             display: none;
             position: fixed;
@@ -185,7 +257,7 @@
         }
 
         .modal-content {
-            background: #111116; /* 깔끔한 검은색 배경 */
+            background: #111116;
             border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 15px;
             padding: 35px 30px;
@@ -194,7 +266,6 @@
             line-height: 1.9;
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            text-align: center;
         }
 
         .close-btn {
@@ -207,39 +278,21 @@
         }
 
         .close-btn:hover { color: #fff; }
-
         .highlight { color: #ffd700; }
         .important { color: #ff6b6b; font-weight: bold; }
-        
-        .copy-link-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 16px;
-            background: #5865F2;
-            color: #ffffff;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .copy-link-btn:hover {
-            background: #4752C4;
-        }
     </style>
 </head>
 <body>
 
     <!-- 상단 내비게이션 -->
     <header>
-        <div class="logo">NEVE ONLINE</div>
+        <div class="logo" onclick="showMainSection()">NEVE ONLINE</div>
         <ul class="nav-links">
-            <li><a onclick="openModal('introModal')">서버소개</a></li>
-            <li><a onclick="openModal('introModal')">서버배경</a></li>
-            <li><a onclick="openModal('introModal')">길라잡이</a></li>
+            <li><a onclick="showIntroSection()">서버소개</a></li>
+            <li><a onclick="showIntroSection()">서버배경</a></li>
+            <li><a onclick="showIntroSection()">길라잡이</a></li>
             <li><a onclick="openModal('donateModal')">후원하러가기</a></li>
-            <li><a onclick="openModal('introModal')">법전</a></li>
+            <li><a onclick="showIntroSection()">법전</a></li>
         </ul>
         <button class="menu-btn" onclick="toggleSidebar()">ㅡ<br>ㅡ<br>ㅡ</button>
     </header>
@@ -253,33 +306,40 @@
         </ul>
     </div>
 
-    <!-- 메인 컨텐츠 -->
+    <!-- 메인 컨텐츠 영역 -->
     <main>
-        <h1 class="hero-title">[ 네베온라인에 당신을 초대합니다. ]</h1>
+        <!-- 기본 메인 화면 -->
+        <div id="mainSection">
+            <h1 class="hero-title">[ 네베온라인에 당신을 초대합니다. ]</h1>
 
-        <div class="btn-group">
-            <a onclick="openModal('introModal')" class="btn btn-tutorial">[튜토리얼보러가기]</a>
-            <a onclick="copyIP()" class="btn btn-copy">[서버주소 복사하러가기]</a>
-            <a href="https://discord.gg/c3cWQPz4KY" target="_blank" class="btn btn-discord">[디스코드 들어가기]</a>
+            <div class="btn-group">
+                <a onclick="showIntroSection()" class="btn btn-tutorial">[튜토리얼보러가기]</a>
+                <a onclick="copyIP()" class="btn btn-copy">[서버주소 복사하러가기]</a>
+                <a href="https://discord.gg/c3cWQPz4KY" target="_blank" class="btn btn-discord">[디스코드 들어가기]</a>
+            </div>
+        </div>
+
+        <!-- ⬛ 서버소개 화면 -->
+        <div id="introSection">
+            <h2>NEVE ONLINE</h2>
+            <p>1.20.1 신생 인생약탈 서버</p>
+            <p style="font-weight: bold; font-size: 20px; margin: 10px 0; color: #fff;">
+                네베온라인에 당신을 초대합니다.
+            </p>
+            <p style="color: #ffd700; font-weight: bold;">
+                서버 ip : neve.labmc.kr
+            </p>
+            
+            <div class="action-btn-group">
+                <a class="copy-link-btn" onclick="copyDiscordLink()">[클릭시 디스코드링크복사]</a>
+                <a class="back-btn" onclick="showMainSection()">[돌아가기]</a>
+            </div>
         </div>
     </main>
 
-    <!-- 서버소개 모달 팝업 -->
-    <div class="modal" id="introModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('introModal')">&times;</span>
-            <h2 class="highlight" style="font-size: 26px; margin-bottom: 15px;">NEVE ONLINE</h2>
-            <p style="font-size: 16px; color: #ddd;">1.20.1 신생 인생약탈 서버</p>
-            <p style="font-size: 18px; font-weight: bold; margin: 15px 0;">네베온라인에 당신을 초대합니다.</p>
-            <p style="font-size: 16px; color: #ffd700;">서버 ip : neve.labmc.kr</p>
-            <br>
-            <a class="copy-link-btn" onclick="copyDiscordLink()">[클릭시 디스코드링크복사]</a>
-        </div>
-    </div>
-
     <!-- 후원 안내 모달 팝업 -->
     <div class="modal" id="donateModal">
-        <div class="modal-content" style="text-align: left;">
+        <div class="modal-content">
             <span class="close-btn" onclick="closeModal('donateModal')">&times;</span>
             <h3 class="highlight" style="text-align: center;">서버의 후원을 원하시나요?</h3><br>
             <p><strong>방법1 :</strong> 서버의 디스코드의 입장후 인증절차를 완료해주세요.</p>
@@ -290,7 +350,7 @@
 
     <!-- 서버 랭킹 모달 팝업 -->
     <div class="modal" id="rankingModal">
-        <div class="modal-content" style="text-align: left;">
+        <div class="modal-content">
             <span class="close-btn" onclick="closeModal('rankingModal')">&times;</span>
             <h3 class="highlight" style="text-align: center;">서버 후원 사전후원 랭킹</h3><br>
             <p><strong>1위 :</strong> blu2b2rry</p>
@@ -306,7 +366,19 @@
             document.getElementById('sidebar').classList.toggle('active');
         }
 
-        // 모달 열기/닫기
+        // 서버소개 화면으로 전환
+        function showIntroSection() {
+            document.getElementById('mainSection').style.display = 'none';
+            document.getElementById('introSection').style.display = 'block';
+        }
+
+        // 메인 화면으로 전환
+        function showMainSection() {
+            document.getElementById('introSection').style.display = 'none';
+            document.getElementById('mainSection').style.display = 'block';
+        }
+
+        // 모달 팝업 제어
         function openModal(id) {
             document.getElementById(id).style.display = 'flex';
         }
@@ -314,7 +386,7 @@
             document.getElementById(id).style.display = 'none';
         }
 
-        // 서버 IP 복사 기능
+        // IP 복사
         function copyIP() {
             const serverIP = "neve.labmc.kr";
             navigator.clipboard.writeText(serverIP).then(() => {
@@ -322,7 +394,7 @@
             });
         }
 
-        // 디스코드 링크 복사 기능
+        // 디스코드 링크 복사
         function copyDiscordLink() {
             const discordURL = "https://discord.gg/c3cWQPz4KY";
             navigator.clipboard.writeText(discordURL).then(() => {

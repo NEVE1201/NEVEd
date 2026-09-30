@@ -15,8 +15,8 @@
         }
 
         body {
-            /* GitHub 저장소 내부의 bg.jpg 파일 연결 */
-            background: url('./bg.jpg') no-repeat center center fixed;
+            /* GitHub 저장소 내 bg.jpg 배경 이미지 */
+            background: url('bg.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #ffffff;
             min-height: 100vh;
@@ -24,7 +24,7 @@
             position: relative;
         }
 
-        /* 배경을 약간 어둡게 해서 글씨 가독성 확보 */
+        /* 배경 어둡게 처리 */
         body::before {
             content: '';
             position: absolute;
@@ -68,6 +68,7 @@
             text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .nav-links a:hover {
@@ -132,7 +133,8 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 60px 20px;
+            min-height: calc(100vh - 80px);
+            padding: 0 20px;
         }
 
         .hero-title {
@@ -148,7 +150,6 @@
             gap: 15px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 50px;
         }
 
         .btn {
@@ -171,44 +172,12 @@
             opacity: 0.9;
         }
 
-        /* 서버소개 카드 */
-        .info-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 600px;
-            width: 100%;
-            text-align: left;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-            line-height: 1.8;
-        }
-
-        .info-card h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #ffd700;
-        }
-
-        .info-card a {
-            color: #7289da;
-            text-decoration: underline;
-        }
-
-        .dev-notice {
-            margin-top: 15px;
-            text-align: center;
-            color: #ffadb0;
-            font-style: italic;
-        }
-
-        /* 모달 팝업 창 (후원/랭킹) */
+        /* 모달 팝업 창 (서버소개 / 후원 / 랭킹) */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
@@ -216,15 +185,16 @@
         }
 
         .modal-content {
-            background: rgba(25, 27, 40, 0.95);
-            border: 1px solid rgba(255, 215, 0, 0.4);
+            background: #111116; /* 깔끔한 검은색 배경 */
+            border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 15px;
-            padding: 30px;
-            max-width: 500px;
+            padding: 35px 30px;
+            max-width: 480px;
             width: 90%;
-            line-height: 1.8;
+            line-height: 1.9;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            text-align: center;
         }
 
         .close-btn {
@@ -240,6 +210,23 @@
 
         .highlight { color: #ffd700; }
         .important { color: #ff6b6b; font-weight: bold; }
+        
+        .copy-link-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #5865F2;
+            color: #ffffff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .copy-link-btn:hover {
+            background: #4752C4;
+        }
     </style>
 </head>
 <body>
@@ -248,11 +235,11 @@
     <header>
         <div class="logo">NEVE ONLINE</div>
         <ul class="nav-links">
-            <li><a href="#intro">서버소개</a></li>
-            <li><a href="#intro">서버배경</a></li>
-            <li><a href="#intro">길라잡이</a></li>
-            <li><a href="#" onclick="openModal('donateModal')">후원하러가기</a></li>
-            <li><a href="#intro">법전</a></li>
+            <li><a onclick="openModal('introModal')">서버소개</a></li>
+            <li><a onclick="openModal('introModal')">서버배경</a></li>
+            <li><a onclick="openModal('introModal')">길라잡이</a></li>
+            <li><a onclick="openModal('donateModal')">후원하러가기</a></li>
+            <li><a onclick="openModal('introModal')">법전</a></li>
         </ul>
         <button class="menu-btn" onclick="toggleSidebar()">ㅡ<br>ㅡ<br>ㅡ</button>
     </header>
@@ -271,26 +258,30 @@
         <h1 class="hero-title">[ 네베온라인에 당신을 초대합니다. ]</h1>
 
         <div class="btn-group">
-            <a href="#intro" class="btn btn-tutorial">[튜토리얼보러가기]</a>
-            <a href="#" class="btn btn-copy" onclick="copyIP()">[서버주소 복사하러가기]</a>
+            <a onclick="openModal('introModal')" class="btn btn-tutorial">[튜토리얼보러가기]</a>
+            <a onclick="copyIP()" class="btn btn-copy">[서버주소 복사하러가기]</a>
             <a href="https://discord.gg/c3cWQPz4KY" target="_blank" class="btn btn-discord">[디스코드 들어가기]</a>
-        </div>
-
-        <!-- 서버소개 박스 -->
-        <div class="info-card" id="intro">
-            <h2>✨ [ 네베온라인 당신을 초대합니다 ] ✨</h2>
-            <p><strong>버전 :</strong> 1.20.1</p>
-            <p><strong>종목 :</strong> 인생약탈</p>
-            <p><strong>디스코드링크 :</strong> <a href="https://discord.gg/c3cWQPz4KY" target="_blank">[클릭시열리기]</a></p>
-            <p class="dev-notice">나머지는 개발중입니다 기다려주세요!</p>
         </div>
     </main>
 
+    <!-- 서버소개 모달 팝업 -->
+    <div class="modal" id="introModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('introModal')">&times;</span>
+            <h2 class="highlight" style="font-size: 26px; margin-bottom: 15px;">NEVE ONLINE</h2>
+            <p style="font-size: 16px; color: #ddd;">1.20.1 신생 인생약탈 서버</p>
+            <p style="font-size: 18px; font-weight: bold; margin: 15px 0;">네베온라인에 당신을 초대합니다.</p>
+            <p style="font-size: 16px; color: #ffd700;">서버 ip : neve.labmc.kr</p>
+            <br>
+            <a class="copy-link-btn" onclick="copyDiscordLink()">[클릭시 디스코드링크복사]</a>
+        </div>
+    </div>
+
     <!-- 후원 안내 모달 팝업 -->
     <div class="modal" id="donateModal">
-        <div class="modal-content">
+        <div class="modal-content" style="text-align: left;">
             <span class="close-btn" onclick="closeModal('donateModal')">&times;</span>
-            <h3 class="highlight">서버의 후원을 원하시나요?</h3><br>
+            <h3 class="highlight" style="text-align: center;">서버의 후원을 원하시나요?</h3><br>
             <p><strong>방법1 :</strong> 서버의 디스코드의 입장후 인증절차를 완료해주세요.</p>
             <p><strong class="important">방법2 : [중요] 후원티켓을 열어 입금내역과 본인의 닉네임을 작성해주세요.</strong></p>
             <p><strong>방법3 :</strong> 기다려주시면 됩니다.</p>
@@ -299,9 +290,9 @@
 
     <!-- 서버 랭킹 모달 팝업 -->
     <div class="modal" id="rankingModal">
-        <div class="modal-content">
+        <div class="modal-content" style="text-align: left;">
             <span class="close-btn" onclick="closeModal('rankingModal')">&times;</span>
-            <h3 class="highlight">서버 후원 사전후원 랭킹</h3><br>
+            <h3 class="highlight" style="text-align: center;">서버 후원 사전후원 랭킹</h3><br>
             <p><strong>1위 :</strong> blu2b2rry</p>
             <p><strong>2위 :</strong> rlaehwl</p>
             <p><strong>3위 :</strong> 미정</p><br>
@@ -323,11 +314,19 @@
             document.getElementById(id).style.display = 'none';
         }
 
-        // IP 복사 기능
+        // 서버 IP 복사 기능
         function copyIP() {
-            const serverIP = "neve.kr"; // 실제 도메인 주소로 변경해서 사용하세요
+            const serverIP = "neve.labmc.kr";
             navigator.clipboard.writeText(serverIP).then(() => {
                 alert("서버 주소가 복사되었습니다: " + serverIP);
+            });
+        }
+
+        // 디스코드 링크 복사 기능
+        function copyDiscordLink() {
+            const discordURL = "https://discord.gg/c3cWQPz4KY";
+            navigator.clipboard.writeText(discordURL).then(() => {
+                alert("디스코드 링크가 복사되었습니다!");
             });
         }
     </script>

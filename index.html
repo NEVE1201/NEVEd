@@ -4,33 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>네베온라인 - NEVE ONLINE</title>
+    <!-- 부드러운 글꼴(Pretendard) 적용 -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Malgun Gothic', sans-serif;
+            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol아고, 정말 죄송합니다! 시스템 오류로 영어 자동 응답이 반복해서 들어갔네요. 답답하셨을 텐데 누적된 오류로 불편을 드려 죄송합니다.
+
+보내주신 마인크래프트 서버 배경 이미지를 웹사이트 배경으로 적용하고, 글꼴(마인크래프트 특유의 네모네모 감성 폰트) 적용 및 요청하신 **[후원하러가기]**, **[서버 랭킹]** 모달/섹션을 모두 반영한 수정 코드를 새로 작성했습니다.
+
+아래 웹사이트 코드 전체를 복사해서 저장하시면 됩니다.
+
+---
+
+### 🌐 네베온라인 웹사이트 수정 전체 코드 (`index.html`)
+
+배경 이미지 파일 이름을 `bg.jpg`로 저장하신 후, 아래 `index.html` 파일과 **같은 폴더**에 넣어주시면 배경이 깔끔하게 표시됩니다!
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네베온라인 - NEVE ONLINE</title>
+    <!-- 마인크래프트 느낌의 네모네모 픽셀 폰트 (NeoDunggeunmo) 불러오기 -->
+    <link rel="stylesheet" href="[https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/NeoDunggeunmo.woff](https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/NeoDunggeunmo.woff)">
+    <style>
+        @font-face {
+            font-family: 'NeoDunggeunmo';
+            src: url('[https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/NeoDunggeunmo.woff](https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/NeoDunggeunmo.woff)') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'NeoDunggeunmo', sans-serif; /* 네모네모 픽셀 폰트 적용 */
         }
 
         body {
-            background: linear-gradient(135deg, #1a1c29 0%, #3b5998 50%, #dfe9f3 100%);
+            /* 보내주신 배경 이미지 적용 (이미지 파일명을 bg.jpg로 저장하여 같은 폴더에 놓으세요) */
+            background: url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #ffffff;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* 천상계 배경 효과 (구름/빛) */
+        /* 배경 어둡게 처리하여 글씨 가독성 확보 */
         body::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.5) 100%);
+            background: rgba(0, 0, 0, 0.45);
             pointer-events: none;
             z-index: 1;
         }
 
-        header, main, .sidebar {
+        header, main, .sidebar, .modal {
             position: relative;
             z-index: 2;
         }
@@ -41,57 +78,54 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 40px;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 2px solid #555;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 26px;
             color: #ffd700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            text-shadow: 2px 2px 0px #000;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             list-style: none;
         }
 
         .nav-links a {
             color: #ffffff;
             text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
+            font-size: 18px;
+            transition: 0.2s;
+            text-shadow: 2px 2px 0px #000;
         }
 
         .nav-links a:hover {
             color: #ffd700;
-            text-shadow: 0 0 8px #ffd700;
         }
 
-        /* 햄버거 메뉴 버튼 */
         .menu-btn {
             background: none;
             border: none;
             color: white;
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
+            line-height: 0.8;
         }
 
         /* 사이드바 */
         .sidebar {
             position: fixed;
             top: 0;
-            right: -250px;
-            width: 250px;
+            right: -280px;
+            width: 280px;
             height: 100%;
-            background: rgba(20, 20, 30, 0.95);
-            backdrop-filter: blur(15px);
-            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-            transition: 0.4s ease;
-            padding-top: 80px;
+            background: rgba(15, 15, 20, 0.95);
+            border-left: 2px solid #555;
+            transition: 0.3s ease;
+            padding: 80px 20px 20px 20px;
             z-index: 10;
         }
 
@@ -101,25 +135,25 @@
 
         .sidebar ul {
             list-style: none;
-            padding: 20px;
         }
 
         .sidebar ul li {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .sidebar ul li a {
-            color: #ddd;
+            color: #fff;
             text-decoration: none;
-            font-size: 16px;
-            transition: 0.3s;
+            font-size: 18px;
+            transition: 0.2s;
+            display: block;
         }
 
         .sidebar ul li a:hover {
             color: #ffd700;
         }
 
-        /* 메인 컨텐츠 영역 */
+        /* 메인 영역 */
         main {
             display: flex;
             flex-direction: column;
@@ -130,11 +164,10 @@
         }
 
         .hero-title {
-            font-size: 42px;
-            font-weight: bold;
+            font-size: 36px;
             margin-bottom: 30px;
             color: #ffffff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+            text-shadow: 3px 3px 0px #000;
         }
 
         .btn-group {
@@ -142,120 +175,173 @@
             gap: 15px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .btn {
-            padding: 12px 25px;
-            border-radius: 30px;
+            padding: 12px 20px;
             text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 16px;
+            border: 2px solid #fff;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            cursor: pointer;
+            transition: 0.2s;
+            text-shadow: 1px 1px 0px #000;
         }
-
-        .btn-tutorial { background: rgba(255, 255, 255, 0.1); color: #fff; }
-        .btn-copy { background: #ffd700; color: #1a1c29; }
-        .btn-discord { background: #5865F2; color: #fff; }
 
         .btn:hover {
-            transform: translateY(-3px);
-            opacity: 0.9;
+            background: #ffd700;
+            color: #000;
+            text-shadow: none;
         }
 
-        /* 서버 소개 카드 박스 */
+        /* 서버 소개 카트 */
         .info-card {
-            background: rgba(255, 255, 255, 0.07);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.75);
+            border: 2px solid #777;
             padding: 30px;
             max-width: 600px;
             width: 100%;
             text-align: left;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            line-height: 1.8;
         }
 
         .info-card h2 {
             text-align: center;
             margin-bottom: 20px;
             color: #ffd700;
-        }
-
-        .info-card p {
-            margin-bottom: 12px;
-            font-size: 16px;
+            text-shadow: 2px 2px 0px #000;
         }
 
         .info-card a {
-            color: #7289da;
+            color: #55ffff;
             text-decoration: underline;
         }
 
         .dev-notice {
-            margin-top: 20px;
+            margin-top: 15px;
             text-align: center;
-            color: #ffadb0;
-            font-style: italic;
+            color: #ff5555;
         }
+
+        /* 모달 팝업 창 (후원안내 & 랭킹) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background: rgba(20, 20, 30, 0.95);
+            border: 2px solid #ffd700;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 15px;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .highlight { color: #ffd700; }
+        .important { color: #ff5555; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <!-- 상단 메뉴 -->
+    <!-- 상단 내비게이션 -->
     <header>
         <div class="logo">NEVE ONLINE</div>
         <ul class="nav-links">
             <li><a href="#intro">서버소개</a></li>
-            <li><a href="#background">서버배경</a></li>
-            <li><a href="#guide">길라잡이</a></li>
-            <li><a href="#donate">후원하러가기</a></li>
-            <li><a href="#rules">법전</a></li>
+            <li><a href="#intro">서버배경</a></li>
+            <li><a href="#intro">길라잡이</a></li>
+            <li><a href="#" onclick="openModal('donateModal')">후원하러가기</a></li>
+            <li><a href="#intro">법전</a></li>
         </ul>
         <button class="menu-btn" onclick="toggleSidebar()">ㅡ<br>ㅡ<br>ㅡ</button>
     </header>
 
-    <!-- 사이드바 -->
+    <!-- 우측 사이드바 -->
     <div class="sidebar" id="sidebar">
         <ul>
-            <li><a href="#hack-check">🛡️ 핵검사신청하기</a></li>
-            <li><a href="#support">🎫 고객센터 / 문의</a></li>
-            <li><a href="#ranking">🏆 서버 랭킹</a></li>
+            <li><a href="#" onclick="alert('핵검사 신청 페이지 준비 중입니다.')">🛡️ 핵검사신청하기</a></li>
+            <li><a href="#" onclick="openModal('rankingModal')">🏆 서버 랭킹</a></li>
+            <li><a href="[https://discord.gg/c3cWQPz4KY](https://discord.gg/c3cWQPz4KY)" target="_blank">💬 디스코드 바로가기</a></li>
         </ul>
     </div>
 
-    <!-- 메인 화면 -->
+    <!-- 메인 컨텐츠 -->
     <main>
         <h1 class="hero-title">[ 네베온라인에 당신을 초대합니다. ]</h1>
 
         <div class="btn-group">
-            <a href="#tutorial" class="btn btn-tutorial">[튜토리얼 보러가기]</a>
-            <a href="#" class="btn btn-copy" onclick="copyIP()">[서버주소 복사하러가기]</a>
-            <a href="https://discord.gg/c3cWQPz4KY" target="_blank" class="btn btn-discord">[디스코드 들어가기]</a>
+            <a href="#intro" class="btn">[튜토리얼보러가기]</a>
+            <a href="#" class="btn" onclick="copyIP()">[서버주소 복사하러가기]</a>
+            <a href="[https://discord.gg/c3cWQPz4KY](https://discord.gg/c3cWQPz4KY)" target="_blank" class="btn">[디스코드 들어가기]</a>
         </div>
 
-        <!-- 서버 소개 박스 -->
+        <!-- 서버소개 박스 -->
         <div class="info-card" id="intro">
-            <h2>✨ 서버 소개 ✨</h2>
-            <p><strong>[네베온라인 당신을 초대합니다]</strong></p>
+            <h2>[ 네베온라인 당신을 초대합니다 ]</h2>
             <p><strong>버전 :</strong> 1.20.1</p>
             <p><strong>종목 :</strong> 인생약탈</p>
-            <p><strong>디스코드링크 :</strong> <a href="https://discord.gg/c3cWQPz4KY" target="_blank">[클릭시 열리기]</a></p>
+            <p><strong>디스코드링크 :</strong> <a href="[https://discord.gg/c3cWQPz4KY](https://discord.gg/c3cWQPz4KY)" target="_blank">[클릭시열리기]</a></p>
             <p class="dev-notice">나머지는 개발중입니다 기다려주세요!</p>
         </div>
     </main>
 
+    <!-- 후원 안내 모달 팝업 -->
+    <div class="modal" id="donateModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('donateModal')">&times;</span>
+            <h3 class="highlight">서버의 후원을 원하시나요?</h3><br>
+            <p><strong>방법1 :</strong> 서버의 디스코드의 입장후 인증절차를 완료해주세요.</p>
+            <p><strong class="important">방법2 : **중요** 후원티켓을 열어 입금내역과 본인의 닉네임을 작성해주세요.</strong></p>
+            <p><strong>방법3 :</strong> 기다려주시면 됩니다.</p>
+        </div>
+    </div>
+
+    <!-- 서버 랭킹 모달 팝업 -->
+    <div class="modal" id="rankingModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('rankingModal')">&times;</span>
+            <h3 class="highlight">서버 후원 사전후원 랭킹</h3><br>
+            <p><strong>1위 :</strong> blu2b2rry</p>
+            <p><strong>2위 :</strong> rlaehwl</p>
+            <p><strong>3위 :</strong> 미정</p><br>
+            <p style="text-align: center; color: #ff77aa;">위에 유저분들은 서버의 큰 도움을 주셨습니다 ♥</p>
+        </div>
+    </div>
+
     <script>
-        // 사이드바 토글 기능
+        // 사이드바 토글
         function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
+            document.getElementById('sidebar').classList.toggle('active');
         }
 
-        // 서버 주소 복사 기능 (서버 주소는 예시로 넣었습니다. 실제 주소로 변경하세요!)
+        // 모달 열기/닫기
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        // IP 복사 기능
         function copyIP() {
-            const serverIP = "neve.labmc.kr"; // 실제 서버 주소로 수정하세요
+            const serverIP = "neve.kr"; // 실제 주소로 변경하세요
             navigator.clipboard.writeText(serverIP).then(() => {
                 alert("서버 주소가 복사되었습니다: " + serverIP);
             });
